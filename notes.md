@@ -11,6 +11,7 @@
   - add a culture slide (diffs w Python: 1) no widespread equivalent of pythonista 2) no epigrammatic zen)
   - add a people slide (Andreas, Dom, Peter, Hugo)
 - rehearse and adjust [ ]
+- publish with on github pages [ ]
 - deliver and gather feedback [ ]
 
 nice to haves:
