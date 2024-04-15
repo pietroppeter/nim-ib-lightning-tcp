@@ -5,3 +5,7 @@
 - adapt to TCP point of view [ ]
 - rehearse and adjust [ ]
 - deliver and gather feedback [ ]
+
+nice to haves:
+- update nimibland website?
+- advance on nim nbblock refactoring?
