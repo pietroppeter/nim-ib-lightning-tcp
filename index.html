@@ -461,6 +461,201 @@ template slideSource =
     nbText: &quot;```nim\n&quot; &amp; nb.source &amp; &quot;\n```\n&quot;
     reference &quot;[nimislides by Hugo Granström](https://github.com/HugoGranstrom/nimiSlides)&quot;
 
+
+### from nimib 5'talk
+
+template slideTitle2 =
+    slide:
+        nbText: &quot;# [**NimibLand**]()\n## Literate Programming and Explorable Explanations&quot;
+        speakerNote: &quot;&quot;&quot;
+- I have a talk proposal with more or less of this title which I am waiting to see if it will be accepted to be presented at FOSDEM
+- This presentation is also accountability for the commitment I would like to have to focus on these stuff for the rest of the batch
+&quot;&quot;&quot;
+
+template slideLiterate =
+    slide:
+        nbText: &quot;&quot;&quot;### [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming)
+
+Programming paradigm by Donald Knuth (1984)
+
+&lt;small&gt;
+a computer program is given as an explanation of how it works
+in a natural language, such as English,
+interspersed (embedded) with snippets of macros
+and traditional source code,
+from which compilable source code can be generated.
+&lt;/small&gt;
+
+Inspired:
+- Jupyter NoteBook
+- Quarto (RMarkdown)
+- Nbdev
+- ...
+- [Nimib]()
+&quot;&quot;&quot;
+        speakerNote: &quot;&quot;&quot;
+- quote is from wikipedia. TODO: check original source
+
+1. Weaving: Generating a comprehensive document about the program and its maintenance.
+2. Tangling: Generating machine executable code
+
+- Jupyter is more Interactive Computing
+- N and B in Nimib come from NoteBook
+- Nbdev closest to original literate programming
+- Observable most important and not quoted
+&quot;&quot;&quot;
+
+template slideExplorable =
+    slide:
+        nbText: &quot;&quot;&quot;### [Explorable Explanations]()
+
+Essay by Bret Victor (2011)
+
+&lt;small&gt;
+&quot;Explorable Explanations is my umbrella project for ideas
+that enable and encourage truly active reading.
+The goal is to change people's relationship with text.
+People currently think of text as information to be consumed.
+I want text to be used as an environment to think in.&quot;
+&lt;/small&gt;
+
+See more at [explorabl.es](https://explorabl.es/)
+
+**Goal**: make in [NimibLand]() better tools for explorable explanations.
+&quot;&quot;&quot;
+        speakerNote: &quot;&quot;&quot;
+- NimibLand concretely is a github organization where me and Hugo are
+moving Nimib related projects
+- The funny part is we decided on the name NimibLand
+before knowing about DynamicLand and MathLand
+(which I discovered about them this week)
+&quot;&quot;&quot;
+
+template slideNimibAsLiterate =
+    slide:
+        slide:
+            nbText: &quot;### Nimib as 'Literate Programming'&quot;
+            nbFile(&quot;hello.nim&quot;): &quot;&quot;&quot;
+import nimib
+
+nbInit
+
+nbText: &quot;A sample program with _Nimib_&quot;
+
+nbCode:
+    echo &quot;hello RC!&quot;
+
+nbSave
+&quot;&quot;&quot;
+            nbText: &quot;`nim r hello`&quot;
+            speakerNote: &quot;&quot;&quot;
+&quot;&quot;&quot;
+        slideIframe(&quot;hello.html&quot;)
+
+template slideNimibAsExplorable =
+    slide:
+        slide:
+            nbText: &quot;### [🌱✨ Explorable Example with Nimib]()&quot;
+        slideIframeFromNblog(&quot;plant_app&quot;)
+
+template slideFirstTask =
+    slide:
+        nbText: &quot;### **FIRST TASK**\n[Groviglio](): wrapper for [Tangle.js]() for Nimib&quot;
+        speakerNote: &quot;&quot;&quot;
+- Tangle.js is a Javascript library by your very own Bret Victor for explorable explanations
+- Discovered this week, does not seem very much known/used but looks like a good starting point
+&quot;&quot;&quot;
+
+template aChristmasTwist =
+    slide:
+        nbText: &quot;&quot;&quot;
+_something else happened during Christmas period..._
+&quot;&quot;&quot;
+
+template slideNimipPy =
+    slide:
+        slide:
+            nbText: &quot;&quot;&quot;### [Nimib.py]()
+&quot;&quot;&quot;
+            nbFile(&quot;hi.py&quot;): &quot;&quot;&quot;
+import nimib as nb
+
+nb.init()
+
+nb.text(&quot;Welcome to `nimib.py`!&quot;)
+
+message = &quot;hello&quot;
+
+with nb.code():
+    print(message)
+
+nb.save()
+&quot;&quot;&quot;
+            nbText: &quot;`python hi.py`&quot;
+        speakerNote: &quot;&quot;&quot;
+Thanks to advent of code
+&quot;&quot;&quot;
+        slideIframe(&quot;../../nimib.py/hi.html&quot;)
+
+template slideEnterPyscript =
+    slide:
+        nbText: &quot;&quot;&quot;### [Pyscript]()
+- Python in the browser
+- PyConUS 2022 (Peter Wang, Anaconda): &quot;Python for the 99%&quot;
+- Started using Pyodide (Python in WASM): heavy asset (MBs), slow loading times (seconds)
+- _recently_: added a **Micropython**🤯 backend: &lt;200kb, &lt;200ms
+&quot;&quot;&quot;
+        speakerNote: &quot;&quot;&quot;
+- Born in Anaconda but run as a community project
+- Creation of Fabio Pliger
+&quot;&quot;&quot;
+
+template slideNimipPyscript =
+    slide:
+        slide:
+            nbFile(&quot;bunny_meets_whaley.py&quot;): &quot;&quot;&quot;
+import nimib as nb
+
+nb.init(pyscript=True)
+
+nb.text(&quot;## Bunny 🐰 meets Whaley 🐳!&quot;)
+nb.text(&quot;Hello world example for pyscript with nimib.py.&quot;)
+
+nb.html(&quot;&lt;button id=\&quot;click-me\&quot;&gt;Click me! 🐰🐳&lt;/button&gt;&lt;br/&gt;&quot;)
+nb.html(&quot;&lt;div id=\&quot;emoji-container\&quot;&gt;&lt;/div&gt;&quot;)
+
+nb.text(&quot;This code adds functionality to the button (try block is a workaround):&quot;)
+with nb.code(pyscript=True):
+    try:
+        from js import document
+
+        def handler(e):
+            output = document.createElement(&quot;span&quot;)
+            output.innerHTML = &quot;🐳&quot;
+            container = document.querySelector(&quot;div#emoji-container&quot;)
+            container.appendChild(output)
+
+        button = document.querySelector(&quot;button#click-me&quot;)
+        button.addEventListener(&quot;click&quot;, handler)
+    except ImportError:
+        print(&quot;running pyscript block not in js&quot;)
+
+nb.save()
+&quot;&quot;&quot;
+            nbText: &quot;**TASK**: make it idiomatic&quot;
+            speakerNote &quot;&quot;&quot;
+- context manager cannot avoid yielding
+- will change to decorators
+&quot;&quot;&quot;
+        slideIframe(&quot;../../nimib.py/bunny_meets_whaley.html&quot;)
+
+template slideAboutNim =
+    slide:
+        nbText: &quot;&quot;&quot;### THANKS FOR LISTENING 🙏
+&quot;&quot;&quot;
+        speakerNote: &quot;&quot;&quot;
+&quot;&quot;&quot;
+
 when isMainModule:
   nbInit(theme = revealTheme)
   setSlidesTheme(Solarized)
@@ -478,9 +673,228 @@ when isMainModule:
   #slideEverything
   #slideProductive
   slideSource
+
+  slideTitle2
+  slideLiterate
+  slideNimibAsLiterate
+  slideExplorable
+  slideNimibAsExplorable
+  slideFirstTask
+  aChristmasTwist
+  slideNimipPy
+  slideEnterPyscript
+  slideNimipPyscript
+  slideAboutNim
   nbSave
 </code></pre>
       <small><p><a href="https://github.com/HugoGranstrom/nimiSlides">nimislides by Hugo Granström</a></p></small>
+      </section>
+      <section data-nimib-slide-number="12" >
+      <h1><a href=""><strong>NimibLand</strong></a></h1>
+<h2>Literate Programming and Explorable Explanations</h2>
+      <aside class="notes">
+  <ul>
+<li>I have a talk proposal with more or less of this title which I am waiting to see if it will be accepted to be presented at FOSDEM</li>
+<li>This presentation is also accountability for the commitment I would like to have to focus on these stuff for the rest of the batch</li>
+</ul>
+
+</aside>
+      </section>
+      <section data-nimib-slide-number="13" >
+      <h3><a href="https://en.wikipedia.org/wiki/Literate_programming">Literate Programming</a></h3>
+<p>Programming paradigm by Donald Knuth (1984)</p>
+<small>
+a computer program is given as an explanation of how it works
+in a natural language, such as English,
+interspersed (embedded) with snippets of macros
+and traditional source code,
+from which compilable source code can be generated.
+</small>
+<p>Inspired:</p>
+<ul>
+<li>Jupyter NoteBook</li>
+<li>Quarto (RMarkdown)</li>
+<li>Nbdev</li>
+<li>...</li>
+<li><a href="">Nimib</a></li>
+</ul>
+      <aside class="notes">
+  <ul>
+<li>quote is from wikipedia. TODO: check original source</li>
+</ul>
+<ol>
+<li>Weaving: Generating a comprehensive document about the program and its maintenance.</li>
+<li>Tangling: Generating machine executable code</li>
+</ol>
+<ul>
+<li>Jupyter is more Interactive Computing</li>
+<li>N and B in Nimib come from NoteBook</li>
+<li>Nbdev closest to original literate programming</li>
+<li>Observable most important and not quoted</li>
+</ul>
+
+</aside>
+      </section>
+      <section data-nimib-slide-number="14" >
+      <section data-nimib-slide-number="15" >
+      <h3>Nimib as 'Literate Programming'</h3>
+      <pre>hello.nim</pre>
+<pre><code class="nim hljs">import nimib
+
+nbInit
+
+nbText: &quot;A sample program with _Nimib_&quot;
+
+nbCode:
+    echo &quot;hello RC!&quot;
+
+nbSave
+</code></pre>
+
+      <p><code>nim r hello</code></p>
+      <aside class="notes">
+  
+</aside>
+      </section>
+      <section data-background-iframe="hello.html" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="16" >
+      <h3><a href="">Explorable Explanations</a></h3>
+<p>Essay by Bret Victor (2011)</p>
+<small>
+"Explorable Explanations is my umbrella project for ideas
+that enable and encourage truly active reading.
+The goal is to change people's relationship with text.
+People currently think of text as information to be consumed.
+I want text to be used as an environment to think in."
+</small>
+<p>See more at <a href="https://explorabl.es/">explorabl.es</a></p>
+<p><strong>Goal</strong>: make in <a href="">NimibLand</a> better tools for explorable explanations.</p>
+      <aside class="notes">
+  <ul>
+<li>
+<p>NimibLand concretely is a github organization where me and Hugo are
+moving Nimib related projects</p>
+</li>
+<li>
+<p>The funny part is we decided on the name NimibLand
+before knowing about DynamicLand and MathLand</p>
+</li>
+</ul>
+<p>(which I discovered about them this week)</p>
+
+</aside>
+      </section>
+      <section data-nimib-slide-number="17" >
+      <section data-nimib-slide-number="18" >
+      <h3><a href="">🌱✨ Explorable Example with Nimib</a></h3>
+      </section>
+      <section data-background-iframe="https://nimib-land.github.io/nblog/drafts/plant_app.html" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="19" >
+      <h3><strong>FIRST TASK</strong></h3>
+<p><a href="">Groviglio</a>: wrapper for <a href="">Tangle.js</a> for Nimib</p>
+      <aside class="notes">
+  <ul>
+<li>Tangle.js is a Javascript library by your very own Bret Victor for explorable explanations</li>
+<li>Discovered this week, does not seem very much known/used but looks like a good starting point</li>
+</ul>
+
+</aside>
+      </section>
+      <section data-nimib-slide-number="20" >
+      <p><em>something else happened during Christmas period...</em></p>
+      </section>
+      <section data-nimib-slide-number="21" >
+      <section data-nimib-slide-number="22" >
+      <h3><a href="">Nimib.py</a></h3>
+      <pre>hi.py</pre>
+<pre><code class="py hljs">import nimib as nb
+
+nb.init()
+
+nb.text(&quot;Welcome to `nimib.py`!&quot;)
+
+message = &quot;hello&quot;
+
+with nb.code():
+    print(message)
+
+nb.save()
+</code></pre>
+
+      <p><code>python hi.py</code></p>
+      </section>
+      <aside class="notes">
+  <p>Thanks to advent of code</p>
+
+</aside>
+      <section data-background-iframe="../../nimib.py/hi.html" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="23" >
+      <h3><a href="">Pyscript</a></h3>
+<ul>
+<li>Python in the browser</li>
+<li>PyConUS 2022 (Peter Wang, Anaconda): &quot;Python for the 99%&quot;</li>
+<li>Started using Pyodide (Python in WASM): heavy asset (MBs), slow loading times (seconds)</li>
+<li><em>recently</em>: added a <strong>Micropython</strong>🤯 backend: &lt;200kb, &lt;200ms</li>
+</ul>
+      <aside class="notes">
+  <ul>
+<li>Born in Anaconda but run as a community project</li>
+<li>Creation of Fabio Pliger</li>
+</ul>
+
+</aside>
+      </section>
+      <section data-nimib-slide-number="24" >
+      <section data-nimib-slide-number="25" >
+      <pre>bunny_meets_whaley.py</pre>
+<pre><code class="py hljs">import nimib as nb
+
+nb.init(pyscript=True)
+
+nb.text(&quot;## Bunny 🐰 meets Whaley 🐳!&quot;)
+nb.text(&quot;Hello world example for pyscript with nimib.py.&quot;)
+
+nb.html(&quot;&lt;button id=\&quot;click-me\&quot;&gt;Click me! 🐰🐳&lt;/button&gt;&lt;br/&gt;&quot;)
+nb.html(&quot;&lt;div id=\&quot;emoji-container\&quot;&gt;&lt;/div&gt;&quot;)
+
+nb.text(&quot;This code adds functionality to the button (try block is a workaround):&quot;)
+with nb.code(pyscript=True):
+    try:
+        from js import document
+
+        def handler(e):
+            output = document.createElement(&quot;span&quot;)
+            output.innerHTML = &quot;🐳&quot;
+            container = document.querySelector(&quot;div#emoji-container&quot;)
+            container.appendChild(output)
+
+        button = document.querySelector(&quot;button#click-me&quot;)
+        button.addEventListener(&quot;click&quot;, handler)
+    except ImportError:
+        print(&quot;running pyscript block not in js&quot;)
+
+nb.save()
+</code></pre>
+
+      <p><strong>TASK</strong>: make it idiomatic</p>
+      <aside class="notes">
+  <ul>
+<li>context manager cannot avoid yielding</li>
+<li>will change to decorators</li>
+</ul>
+
+</aside>
+      </section>
+      <section data-background-iframe="../../nimib.py/bunny_meets_whaley.html" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="26" >
+      <h3>THANKS FOR LISTENING 🙏</h3>
+      <aside class="notes">
+  
+</aside>
       </section>
     </div>
   </div>
