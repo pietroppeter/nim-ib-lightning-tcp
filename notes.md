@@ -1,3 +1,12 @@
+new plan:
+- intro [x]
+- new theme [x]
+- tech
+- culture
+- people
+
+---
+
 - init repo [x]
 - add title and desciption from meetup submission [x]
 - add content from https://github.com/pietroppeter/nim-for-pythonistas [x]
@@ -15,5 +24,6 @@
 - deliver and gather feedback [ ]
 
 nice to haves:
+- experiment with new nimislides formatting? (new font, slide specific background colors?)
 - update nimibland website?
 - advance on nim nbblock refactoring?

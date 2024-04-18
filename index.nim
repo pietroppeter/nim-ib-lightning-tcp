@@ -18,14 +18,41 @@ template nbTextSmall*(text: string) =
 
 template slideTitle =
   slide:
-    bigText: "Nim 👑 for Pythonistas 🐍"
-    nbText: "[github.com/pietroppeter/nim-for-pythonistas](https://github.com/pietroppeter/nim-for-pythonistas)"
-    nbText: "_⚡ @ PyCon🇸🇪 2023, Nov 10th_"
-    reference: "Pietro Peterlongo from [Python Milano](https://milano.python.it) 🇮🇹"
+    bigText: "Why Invest in a Niche Tech?"
+    nbText: "## The case of Nim(ib)"
+    nbText: "A TCP lightning chat"
+    nbText: "[github.com/pietroppeter/nim-ib-lightning-tcp](https://github.com/pietroppeter/nim-ib-lightning-tcp)"
     speakerNote: """
+- former title: Why Nim is interesting and what I do with it
 - slides are on github
-- I organize event in Milan come to speak!
-- Nim is one of the reason I am here today
+"""
+
+template slideNiche =
+  slide:
+    bigText: "What is a Niche Tech?"
+    speakerNote: """
+in terms of programming languages:
+- Nim is Niche, Python is mainstream
+- Zig is Niche, C is mainstream
+- Gleam is Niche, Javascript is mainstream
+
+Rust... depends where you sit.
+Nicheness is a continuumm a loosely defined
+From my point of view it is graduating from Niche to Mainstream
+With the side effect that C++ might become legacy...
+
+I will be define it in subjective terms:
+- you know very little people that do it (less than 5, normally 0)
+- you can access a (small) community of enthusiasts
+
+The goal of course is to conquer the world!
+
+Will Nim become the next Python?
+
+Spoiler: NO
+
+But my goal is to convince you today that it might be interesting
+to invest in a niche tech even discounting ultimate success
 """
 
 template reference(text: string) =
@@ -424,31 +451,36 @@ template slideAboutNim =
 
 when isMainModule:
   nbInit(theme = revealTheme)
-  setSlidesTheme(Solarized)
+  setSlidesTheme(League)
   addNbTextSmall
+
+  # intro: setting the stage
+  slideTitle
+  slideNiche
+  # the characters are: the tech, the community... and me
+
 
   when false:
     discard
-  slideTitle
-  slideWhatIsNim 
-  #slideAlternativeToRust
-  slideSyntax
-  slidePerformant # compiles to C
-  slidePragmatic # FFI: e.g. nimporter and nimpy
-  slidePortable # Compiles to Javascript!
-  #slideEverything
-  #slideProductive
-  slideSource
+    slideWhatIsNim 
+    #slideAlternativeToRust
+    slideSyntax
+    slidePerformant # compiles to C
+    slidePragmatic # FFI: e.g. nimporter and nimpy
+    slidePortable # Compiles to Javascript!
+    #slideEverything
+    #slideProductive
+    slideSource
 
-  slideTitle2
-  slideLiterate
-  slideNimibAsLiterate
-  slideExplorable
-  slideNimibAsExplorable
-  slideFirstTask
-  aChristmasTwist
-  slideNimipPy
-  slideEnterPyscript
-  slideNimipPyscript
-  slideAboutNim
+    slideTitle2
+    slideLiterate
+    slideNimibAsLiterate
+    slideExplorable
+    slideNimibAsExplorable
+    slideFirstTask
+    aChristmasTwist
+    slideNimipPy
+    slideEnterPyscript
+    slideNimipPyscript
+    slideAboutNim
   nbSave
