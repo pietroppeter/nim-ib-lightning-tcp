@@ -16,6 +16,7 @@ template nbTextSmall*(text: string) =
   nbText: text
   nb.blk.command = "nbTextSmall"
 
+# ---------------------------------------
 template slideTitle =
   slide:
     bigText: "Why Invest in a Niche Tech?"
@@ -55,67 +56,24 @@ But my goal is to convince you today that it might be interesting
 to invest in a niche tech even discounting ultimate success
 """
 
+# ---------------------------------------
+
+template slideTech =
+  slide:
+    nbText "## [The Tech]()"
+
 template reference(text: string) =
   nbTextSmall: text
 
-template slideWhatIsNim =
-  slide(slideOptions(autoAnimate=true)):
+template slideHelloNim =
+  slide:
     nbText: "## What is Nim 👑"
     columns:
       column:
         nbCodeInBlock:
-          let message = "Hi_PyConSE23!"
-          for i in 0 ..< message.len:
-            echo message[0 .. i]
-      column:
-        nbText: "<span data-id=\"nimis\">Nim is a</span>" &
-        "<span data-id=\"proglang\"><br>programming language</span>" #&
-    reference "[A Programming Language Underdog (2018)](url.info)" # small
-    speakerNote: """
-- an interesting second (or 3rd or nth) proglang to learn after python
-- programming languages are fun!
-- nim is my way of procrastinating learning Rust
-- it is much more niche, I learn it for fun not for money
-"""
-
-  slide(slideOptions(autoAnimate=true)):
-    nbText: "## What is Nim 👑"
-    columns:
-      column:
-        nbCodeInBlock:
-          let message = "Hi_PyConSE23!"
-          for i in 0 ..< message.len:
-            echo message[0 .. i]
-      column:
-        nbText: "<span data-id=\"nimis\">Nim is a</span>" &
-        "<span data-id=\"compiled\"><br>compiled</span>" &
-        "<span data-id=\"proglang\"><br>programming language</span>"
-    reference "[A Programming Language Underdog (2018)](url.info)" # small
-
-  slide(slideOptions(autoAnimate=true)):
-    nbText: "## What is Nim 👑"
-    columns:
-      column:
-        nbCodeInBlock:
-          let message = "Hi_PyConSE23!"
-          for i in 0 ..< message.len:
-            echo message[0 .. i]
-      column:
-        nbText: "<span data-id=\"nimis\">Nim is a</span>" &
-        "<span data-id=\"static\"><br>statically typed</span>" &
-        "<span data-id=\"compiled\"><br>compiled</span>" &
-        "<span data-id=\"proglang\"><br>programming language</span>"
-        #"<span data-id=\"everything\"><br>for everything</span>"
-    reference "[A Programming Language Underdog (2018)](url.info)" # small
-
-  slide(slideOptions(autoAnimate=true)):
-    nbText: "## What is Nim 👑"
-    columns:
-      column:
-        nbCodeInBlock:
-          let message = "Hi_PyConSE23!"
-          for i in 0 ..< message.len:
-            echo message[0 .. i]
+          let 💬 = "Hi Crafters!"
+          for i in 0 ..< 💬.len:
+            echo 💬[0 .. i]
       column:
         nbText: "<span data-id=\"nimis\">Nim is a</span>" &
         "<span data-id=\"static\"><br>statically typed</span>" &
@@ -123,11 +81,12 @@ template slideWhatIsNim =
         "<span data-id=\"proglang\"><br>programming language</span>" &
         "<span data-id=\"everything\"><br>for everything</span>"
     reference "[A Programming Language Underdog (2018)](url.info)" # small
-
-template slideAlternativeToRust =
-  slide:
-    nbText: "_(an alternative to Rust)_" # have it appear later and small
-    # with different tradeoffs
+    speakerNote: """
+- an interesting second (or 3rd or nth) proglang to learn after python
+- programming languages are fun!
+- nim is my way of procrastinating learning Rust
+- it is much more niche, I learn it for fun not for money
+"""
 
 template slideSyntax =
   slide:
@@ -231,14 +190,14 @@ python3 main.py
     reference "[nimporter](https://github.com/Pebaz/nimporter)"
     reference "[nimpy](https://github.com/yglukhov/nimpy)"
 
-template slidePortable =
+template slideJavascript =
   slide:
-    slide:
-      nbText: "### 🤯 Compiles to Javascript!"
-      fragment:
-        nbText: "### [🌱✨ plant app](https://pietroppeter.github.io/nblog/drafts/plant_app.html?utm_source=github-pietroppeter) 👇"    
-  
-    slideIframeFromNblog("plant_app")
+    nbText: "### 🤯 Compiles to Javascript!"
+  slideIframe("okazzu.html")
+
+template slidePlant =
+  slideIframeFromNblog("plant_app")
+
 
 # WIP
 template slideEverything =
@@ -450,23 +409,29 @@ template slideAboutNim =
 """
 
 when isMainModule:
+  import p5
+
   nbInit(theme = revealTheme)
+  nbUseP5
   setSlidesTheme(League)
   addNbTextSmall
 
   # intro: setting the stage
-  slideTitle
-  slideNiche
+  when false:
+    slideTitle
+    slideNiche
   # the characters are: the tech, the community... and me
 
+  slide:
+    slideTech
+    slideHelloNim 
+    slidePerformant # compiles to C
+    slideSyntax
+    slidePragmatic # FFI: e.g. nimporter and nimpy
+    slideJavascript # Okazzu!
 
   when false:
-    discard
-    slideWhatIsNim 
     #slideAlternativeToRust
-    slideSyntax
-    slidePerformant # compiles to C
-    slidePragmatic # FFI: e.g. nimporter and nimpy
     slidePortable # Compiles to Javascript!
     #slideEverything
     #slideProductive

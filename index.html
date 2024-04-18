@@ -6,48 +6,150 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.0/theme/league.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.0/plugin/highlight/monokai.min.css" integrity="sha512-z8wQkuDRFwCBfoj7KOiu1MECaRVoXx6rZQWL21x0BsVVH7JkqCp1Otf39qve6CrCycOOL5o9vgfII5Smds23rg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>  <body>
   <div class="reveal">
     <div class="slides">
+      
       <section data-nimib-slide-number="1" >
-      <h2 class="r-fit-text"> <p>Why Invest in a Niche Tech?</p> </h2>
-      <h2>The case of Nim(ib)</h2>
-      <p>A TCP lightning chat</p>
-      <p><a href="https://github.com/pietroppeter/nim-ib-lightning-tcp">github.com/pietroppeter/nim-ib-lightning-tcp</a></p>
+      <section data-nimib-slide-number="2" >
+      <h2><a href="">The Tech</a></h2>
+      </section>
+      <section data-nimib-slide-number="3" >
+      <h2>What is Nim 👑</h2>
+      <div style="display: grid; grid-auto-flow: column;">
+      <div>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers><span class="hljs-keyword">let</span> 💬 = <span class="hljs-string">&quot;Hi Crafters!&quot;</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> ..&lt; 💬.len:
+  <span class="hljs-keyword">echo</span> 💬[<span class="hljs-number">0</span> .. i]</code></pre><pre style="width: 100%;"><samp class="hljs">H
+Hi
+Hi 
+Hi C
+Hi Cr
+Hi Cra
+Hi Craf
+Hi Craft
+Hi Crafte
+Hi Crafter
+Hi Crafters
+Hi Crafters!</samp></pre>
+      </div>
+      <div>
+      <p><span data-id="nimis">Nim is a</span><span data-id="static"><br>statically typed</span><span data-id="compiled"><br>compiled</span><span data-id="proglang"><br>programming language</span><span data-id="everything"><br>for everything</span></p>
+      </div>
+      </div>
+      <small><p><a href="url.info">A Programming Language Underdog (2018)</a></p></small>
       <aside class="notes">
   <ul>
-<li>former title: Why Nim is interesting and what I do with it</li>
-<li>slides are on github</li>
+<li>an interesting second (or 3rd or nth) proglang to learn after python</li>
+<li>programming languages are fun!</li>
+<li>nim is my way of procrastinating learning Rust</li>
+<li>it is much more niche, I learn it for fun not for money</li>
 </ul>
 
 </aside>
       </section>
-      <section data-nimib-slide-number="2" >
-      <h2 class="r-fit-text"> <p>What is a Niche Tech?</p> </h2>
-      <aside class="notes">
-  <p>in terms of programming languages:</p>
-<ul>
-<li>Nim is Niche, Python is mainstream</li>
-<li>Zig is Niche, C is mainstream</li>
-<li>Gleam is Niche, Javascript is mainstream</li>
-</ul>
-<p>Rust... depends where you sit.
-Nicheness is a continuumm a loosely defined
-From my point of view it is graduating from Niche to Mainstream
-With the side effect that C++ might become legacy...</p>
-<p>I will be define it in subjective terms:</p>
-<ul>
-<li>you know very little people that do it (less than 5, normally 0)</li>
-<li>you can access a (small) community of enthusiasts</li>
-</ul>
-<p>The goal of course is to conquer the world!</p>
-<p>Will Nim become the next Python?</p>
-<p>Spoiler: NO</p>
-<p>But my goal is to convince you today that it might be interesting
-to invest in a niche tech even discounting ultimate success</p>
+      <section data-nimib-slide-number="4" >
+      <h3>🏎️ Performant: compiles to C</h3>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers><span class="hljs-keyword">const</span> <span class="hljs-type">N</span> = <span class="hljs-number">3</span>
+<span class="hljs-keyword">type</span> <span class="hljs-type">Matrix</span> = <span class="hljs-built_in">array</span>[<span class="hljs-type">N</span>, <span class="hljs-built_in">array</span>[<span class="hljs-type">N</span>, <span class="hljs-built_in">int</span>]]
 
-</aside>
+<span class="hljs-keyword">let</span>
+  <span class="hljs-type">A</span> = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]]
+  <span class="hljs-type">B</span> = [[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]]
+
+<span class="hljs-keyword">func</span> `*`(a, b: <span class="hljs-type">Matrix</span>): <span class="hljs-type">Matrix</span> =
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> ..&lt; <span class="hljs-type">N</span>:
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> ..&lt; <span class="hljs-type">N</span>:
+      <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> ..&lt; <span class="hljs-type">N</span>:
+        <span class="hljs-literal">result</span>[i][j] += a[i][k]*b[k][j]
+
+<span class="hljs-keyword">echo</span> <span class="hljs-type">A</span>*<span class="hljs-type">B</span></code></pre><pre style="width: 100%;"><samp class="hljs">[[1, 3, 6], [4, 9, 15], [7, 15, 24]]</samp></pre>
+      <small><p><a href="https://archive.fosdem.org/2022/schedule/event/nim_hpcfrompythontonim/">HPC from Python to Nim (Fosdem 2022)</a></p></small>
       </section>
+      <section data-nimib-slide-number="5" >
+      <h3>Pythonic Syntax with 🦸 Superpowers</h3>
+      <div style="display: grid; grid-auto-flow: column;">
+      <div>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers><span class="hljs-keyword">type</span>
+  <span class="hljs-type">Grid</span> = <span class="hljs-built_in">array</span>[<span class="hljs-number">3</span>, <span class="hljs-built_in">array</span>[<span class="hljs-number">3</span>, <span class="hljs-type">Cell</span>]]
+  <span class="hljs-type">Cell</span> = <span class="hljs-keyword">enum</span> <span class="hljs-type">X</span>, <span class="hljs-type">O</span>
+
+<span class="hljs-keyword">func</span> initGrid: <span class="hljs-type">Grid</span> =
+  [[<span class="hljs-type">X</span>,<span class="hljs-type">O</span>,<span class="hljs-type">X</span>],[<span class="hljs-type">O</span>,<span class="hljs-type">X</span>,<span class="hljs-type">O</span>],[<span class="hljs-type">X</span>,<span class="hljs-type">O</span>,<span class="hljs-type">X</span>]]
+
+<span class="hljs-keyword">proc</span> show(g: <span class="hljs-type">Grid</span>) =
+  <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> g:
+    <span class="hljs-keyword">echo</span> row
+
+<span class="hljs-keyword">proc</span> update(g: <span class="hljs-keyword">var</span> <span class="hljs-type">Grid</span>) =
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> g.<span class="hljs-keyword">low</span> .. g.<span class="hljs-keyword">high</span>:
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> g[i].<span class="hljs-keyword">low</span> .. g[i].<span class="hljs-keyword">high</span>:
+      g[i][j] = <span class="hljs-keyword">if</span> g[i][j] == <span class="hljs-type">X</span>: <span class="hljs-type">O</span> <span class="hljs-keyword">else</span>: <span class="hljs-type">X</span></code></pre>
+      <small><ul>
+<li>🦸 syntax fits well with <strong>metaprogramming</strong></li>
+<li>💡 UFCS (Uniform Function Call Syntax)</li>
+</ul></small>
+      <small><p><a href="https://nim-lang.org/blog/2021/11/15/zen-of-nim.html">Zen of Nim (2021)</a></p></small>
+      </div>
+      <div>
+      <p>⠀</p>
+      </div>
+      <div>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers><span class="hljs-keyword">var</span> g = initGrid()
+show g <span class="hljs-comment"># command</span></code></pre><pre style="width: 100%;"><samp class="hljs">[X, O, X]
+[O, X, O]
+[X, O, X]</samp></pre>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers>g.update <span class="hljs-comment"># method</span>
+g.show</code></pre><pre style="width: 100%;"><samp class="hljs">[O, X, O]
+[X, O, X]
+[O, X, O]</samp></pre>
+      <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers>update(g) <span class="hljs-comment"># function</span>
+show(g)</code></pre><pre style="width: 100%;"><samp class="hljs">[X, O, X]
+[O, X, O]
+[X, O, X]</samp></pre>
+      </div>
+      </div>
+      </section>
+      <section data-nimib-slide-number="6" >
+      <h3>🤝 Interop with Python</h3>
+      <p><code>fibonacci.nim</code></p>
+<pre><code class="language-nim">import nimpy
+
+func fib*(n: int): int {. exportpy .} =
+  if n &lt; 2: 1 else: fib(n - 1) + fib(n - 2)
+</code></pre>
+<p><code>main.py</code></p>
+<pre><code class="language-python">import nimporter
+from fibonacci import fib
+
+print(fib(10))
+</code></pre>
+<pre><code>python3 main.py
+</code></pre>
+<pre><code>89
+</code></pre>
+      <small><p><a href="https://github.com/Pebaz/nimporter">nimporter</a></p></small>
+      <small><p><a href="https://github.com/yglukhov/nimpy">nimpy</a></p></small>
+      </section>
+      <section data-nimib-slide-number="7" >
+      <h3>🤯 Compiles to Javascript!</h3>
+      </section>
+      <section data-background-iframe="okazzu.html" data-background-interactive></section>
+      </section>
+      <script defer>/* Generated by the Nim Compiler v1.6.10 */
+var framePtr = null;
+var excHandler = 0;
+var lastJSError = null;
+if (!Math.trunc) {
+  Math.trunc = function(v) {
+    v = +v;
+    if (!isFinite(v)) return v;
+    return (v - v % 1) || (v < 0 ? -0 : v === 0 ? v : 0);
+  };
+}
+
+var objectID_620757154 = [0];
+</script>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.0/reveal.js" integrity="sha512-+Dy2HJZ3Z1DWerDhqFE7AH2HTfnbq8RC1pKOashfMwx1s01fjPUebWoHqrRedU1yFimkexmzJJRilKxjs7lz8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
