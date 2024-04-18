@@ -284,10 +284,9 @@ before knowing about DynamicLand and MathLand
 """
 
 template slideNimibAsLiterate =
-    slide:
-        slide:
-            nbText: "### Nimib as 'Literate Programming'"
-            nbFile("hello.nim"): """
+  slide:
+    nbText: "### Nimib as 'Literate Programming'"
+    nbFile("hello.nim"): """
 import nimib
 
 nbInit
@@ -299,37 +298,19 @@ nbCode:
 
 nbSave
 """
-            nbText: "`nim r hello`"
-            speakerNote: """
+    nbText: "`nim r hello`"
+    speakerNote: """
 """
-        slideIframe("hello.html")
+  slideIframe("hello.html")
 
 template slideNimibAsExplorable =
-    slide:
-        slide:
-            nbText: "### [🌱✨ Explorable Example with Nimib]()"
-        slideIframeFromNblog("plant_app")
+  slideIframeFromNblog("plant_app")
 
-template slideFirstTask =
-    slide:
-        nbText: "### **FIRST TASK**\n[Groviglio](): wrapper for [Tangle.js]() for Nimib"
-        speakerNote: """
-- Tangle.js is a Javascript library by your very own Bret Victor for explorable explanations
-- Discovered this week, does not seem very much known/used but looks like a good starting point
+template slideNimibPy =
+  slide:
+    nbText: """### [Nimib.py]()
 """
-
-template aChristmasTwist =
-    slide:
-        nbText: """
-_something else happened during Christmas period..._
-"""
-
-template slideNimipPy =
-    slide:
-        slide:
-            nbText: """### [Nimib.py]()
-"""
-            nbFile("hi.py"): """
+    nbFile("hi.py"): """
 import nimib as nb
 
 nb.init()
@@ -343,69 +324,68 @@ with nb.code():
 
 nb.save()
 """
-            nbText: "`python hi.py`"
-        speakerNote: """
+    nbText: "`python hi.py`"
+    speakerNote: """
 Thanks to advent of code
 """
-        slideIframe("../../nimib.py/hi.html")
+  slideIframe("../../nimib.py/hi.html")
 
-template slideEnterPyscript =
-    slide:
-        nbText: """### [Pyscript]()
-- Python in the browser
-- PyConUS 2022 (Peter Wang, Anaconda): "Python for the 99%"
-- Started using Pyodide (Python in WASM): heavy asset (MBs), slow loading times (seconds)
-- _recently_: added a **Micropython**🤯 backend: <200kb, <200ms
+template slideCulture =
+  slide:
+    nbText "## [The Culture]()"
+
+template slidePeople =
+  slide:
+    nbText "## [The People]()"
+
+
+template slideZenOfPy =
+  slide:
+    nbText: "### Zen of Python"
+    nbText: """
+```md
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!```
 """
-        speakerNote: """
-- Born in Anaconda but run as a community project
-- Creation of Fabio Pliger
-"""
 
-template slideNimipPyscript =
-    slide:
-        slide:
-            nbFile("bunny_meets_whaley.py"): """
-import nimib as nb
-
-nb.init(pyscript=True)
-
-nb.text("## Bunny 🐰 meets Whaley 🐳!")
-nb.text("Hello world example for pyscript with nimib.py.")
-
-nb.html("<button id=\"click-me\">Click me! 🐰🐳</button><br/>")
-nb.html("<div id=\"emoji-container\"></div>")
-
-nb.text("This code adds functionality to the button (try block is a workaround):")
-with nb.code(pyscript=True):
-    try:
-        from js import document
-
-        def handler(e):
-            output = document.createElement("span")
-            output.innerHTML = "🐳"
-            container = document.querySelector("div#emoji-container")
-            container.appendChild(output)
-
-        button = document.querySelector("button#click-me")
-        button.addEventListener("click", handler)
-    except ImportError:
-        print("running pyscript block not in js")
-
-nb.save()
-"""
-            nbText: "**TASK**: make it idiomatic"
-            speakerNote """
-- context manager cannot avoid yielding
-- will change to decorators
-"""
-        slideIframe("../../nimib.py/bunny_meets_whaley.html")
-
-template slideAboutNim =
-    slide:
-        nbText: """### THANKS FOR LISTENING 🙏
-"""
-        speakerNote: """
+template slideZenOfNim =
+  slide:
+    nbText: "### Zen of Nim"
+    nbText: """
+```md
+1. Copying bad design is not good design.
+2. If the compiler cannot reason about the code,
+   neither can the programmer.
+3. Don’t get in the programmer’s way.
+4. Move work to compile-time:
+   Programs are run more often than they are compiled.
+5. Customizable memory management.
+6. Concise code is not in conflict with readability,
+   it enables readability.
+7. (Leverage meta programming to keep the language small.)
+8. Optimization is specialization:
+   When you need more speed, write custom code.
+9. There should be one and only one programming language
+   for everything.
+   That language is Nim.
+```
 """
 
 when isMainModule:
@@ -417,7 +397,7 @@ when isMainModule:
   addNbTextSmall
 
   # intro: setting the stage
-  when false:
+  slide:
     slideTitle
     slideNiche
   # the characters are: the tech, the community... and me
@@ -429,23 +409,26 @@ when isMainModule:
     slideSyntax
     slidePragmatic # FFI: e.g. nimporter and nimpy
     slideJavascript # Okazzu!
-
-  when false:
-    #slideAlternativeToRust
-    slidePortable # Compiles to Javascript!
-    #slideEverything
-    #slideProductive
-    slideSource
-
-    slideTitle2
-    slideLiterate
+    slide:
+      nbText: "[I can do Open Source!]()"
     slideNimibAsLiterate
     slideExplorable
-    slideNimibAsExplorable
-    slideFirstTask
-    aChristmasTwist
-    slideNimipPy
-    slideEnterPyscript
-    slideNimipPyscript
-    slideAboutNim
+    slidePlant
+    slideNimibPy
+
+  slide:
+    slideCulture
+    slideZenOfPy
+    slideZenOfNim
+    # a pragmatic, down to earth
+    slide:
+      nbText: "[Same for a Mainstream tech?]()"
+      # the culture is forming in a niche
+      # I can bring my own culture
+    slideIframe("https://forum.nim-lang.org/t/8780")
+  
+  slide:
+    slidePeople
+    # slideADPH
+  
   nbSave

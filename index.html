@@ -12,9 +12,50 @@
       
       <section data-nimib-slide-number="1" >
       <section data-nimib-slide-number="2" >
-      <h2><a href="">The Tech</a></h2>
+      <h2 class="r-fit-text"> <p>Why Invest in a Niche Tech?</p> </h2>
+      <h2>The case of Nim(ib)</h2>
+      <p>A TCP lightning chat</p>
+      <p><a href="https://github.com/pietroppeter/nim-ib-lightning-tcp">github.com/pietroppeter/nim-ib-lightning-tcp</a></p>
+      <aside class="notes">
+  <ul>
+<li>former title: Why Nim is interesting and what I do with it</li>
+<li>slides are on github</li>
+</ul>
+
+</aside>
       </section>
       <section data-nimib-slide-number="3" >
+      <h2 class="r-fit-text"> <p>What is a Niche Tech?</p> </h2>
+      <aside class="notes">
+  <p>in terms of programming languages:</p>
+<ul>
+<li>Nim is Niche, Python is mainstream</li>
+<li>Zig is Niche, C is mainstream</li>
+<li>Gleam is Niche, Javascript is mainstream</li>
+</ul>
+<p>Rust... depends where you sit.
+Nicheness is a continuumm a loosely defined
+From my point of view it is graduating from Niche to Mainstream
+With the side effect that C++ might become legacy...</p>
+<p>I will be define it in subjective terms:</p>
+<ul>
+<li>you know very little people that do it (less than 5, normally 0)</li>
+<li>you can access a (small) community of enthusiasts</li>
+</ul>
+<p>The goal of course is to conquer the world!</p>
+<p>Will Nim become the next Python?</p>
+<p>Spoiler: NO</p>
+<p>But my goal is to convince you today that it might be interesting
+to invest in a niche tech even discounting ultimate success</p>
+
+</aside>
+      </section>
+      </section>
+      <section data-nimib-slide-number="4" >
+      <section data-nimib-slide-number="5" >
+      <h2><a href="">The Tech</a></h2>
+      </section>
+      <section data-nimib-slide-number="6" >
       <h2>What is Nim 👑</h2>
       <div style="display: grid; grid-auto-flow: column;">
       <div>
@@ -48,7 +89,7 @@ Hi Crafters!</samp></pre>
 
 </aside>
       </section>
-      <section data-nimib-slide-number="4" >
+      <section data-nimib-slide-number="7" >
       <h3>🏎️ Performant: compiles to C</h3>
       <pre style="width: 100%"><code class="nim hljs" data-noescape data-line-numbers><span class="hljs-keyword">const</span> <span class="hljs-type">N</span> = <span class="hljs-number">3</span>
 <span class="hljs-keyword">type</span> <span class="hljs-type">Matrix</span> = <span class="hljs-built_in">array</span>[<span class="hljs-type">N</span>, <span class="hljs-built_in">array</span>[<span class="hljs-type">N</span>, <span class="hljs-built_in">int</span>]]
@@ -66,7 +107,7 @@ Hi Crafters!</samp></pre>
 <span class="hljs-keyword">echo</span> <span class="hljs-type">A</span>*<span class="hljs-type">B</span></code></pre><pre style="width: 100%;"><samp class="hljs">[[1, 3, 6], [4, 9, 15], [7, 15, 24]]</samp></pre>
       <small><p><a href="https://archive.fosdem.org/2022/schedule/event/nim_hpcfrompythontonim/">HPC from Python to Nim (Fosdem 2022)</a></p></small>
       </section>
-      <section data-nimib-slide-number="5" >
+      <section data-nimib-slide-number="8" >
       <h3>Pythonic Syntax with 🦸 Superpowers</h3>
       <div style="display: grid; grid-auto-flow: column;">
       <div>
@@ -110,7 +151,7 @@ show(g)</code></pre><pre style="width: 100%;"><samp class="hljs">[X, O, X]
       </div>
       </div>
       </section>
-      <section data-nimib-slide-number="6" >
+      <section data-nimib-slide-number="9" >
       <h3>🤝 Interop with Python</h3>
       <p><code>fibonacci.nim</code></p>
 <pre><code class="language-nim">import nimpy
@@ -131,10 +172,142 @@ print(fib(10))
       <small><p><a href="https://github.com/Pebaz/nimporter">nimporter</a></p></small>
       <small><p><a href="https://github.com/yglukhov/nimpy">nimpy</a></p></small>
       </section>
-      <section data-nimib-slide-number="7" >
+      <section data-nimib-slide-number="10" >
       <h3>🤯 Compiles to Javascript!</h3>
       </section>
       <section data-background-iframe="okazzu.html" data-background-interactive></section>
+      <section data-nimib-slide-number="11" >
+      <p><a href="">I can do Open Source!</a></p>
+      </section>
+      <section data-nimib-slide-number="12" >
+      <h3>Nimib as 'Literate Programming'</h3>
+      <pre>hello.nim</pre>
+<pre><code class="nim hljs">import nimib
+
+nbInit
+
+nbText: &quot;A sample program with _Nimib_&quot;
+
+nbCode:
+    echo &quot;hello RC!&quot;
+
+nbSave
+</code></pre>
+
+      <p><code>nim r hello</code></p>
+      <aside class="notes">
+  
+</aside>
+      </section>
+      <section data-background-iframe="hello.html" data-background-interactive></section>
+      <section data-nimib-slide-number="13" >
+      <h3><a href="">Explorable Explanations</a></h3>
+<p>Essay by Bret Victor (2011)</p>
+<small>
+"Explorable Explanations is my umbrella project for ideas
+that enable and encourage truly active reading.
+The goal is to change people's relationship with text.
+People currently think of text as information to be consumed.
+I want text to be used as an environment to think in."
+</small>
+<p>See more at <a href="https://explorabl.es/">explorabl.es</a></p>
+<p><strong>Goal</strong>: make in <a href="">NimibLand</a> better tools for explorable explanations.</p>
+      <aside class="notes">
+  <ul>
+<li>
+<p>NimibLand concretely is a github organization where me and Hugo are
+moving Nimib related projects</p>
+</li>
+<li>
+<p>The funny part is we decided on the name NimibLand
+before knowing about DynamicLand and MathLand</p>
+</li>
+</ul>
+<p>(which I discovered about them this week)</p>
+
+</aside>
+      </section>
+      <section data-background-iframe="https://nimib-land.github.io/nblog/drafts/plant_app.html" data-background-interactive></section>
+      <section data-nimib-slide-number="14" >
+      <h3><a href="">Nimib.py</a></h3>
+      <pre>hi.py</pre>
+<pre><code class="py hljs">import nimib as nb
+
+nb.init()
+
+nb.text(&quot;Welcome to `nimib.py`!&quot;)
+
+message = &quot;hello&quot;
+
+with nb.code():
+    print(message)
+
+nb.save()
+</code></pre>
+
+      <p><code>python hi.py</code></p>
+      <aside class="notes">
+  <p>Thanks to advent of code</p>
+
+</aside>
+      </section>
+      <section data-background-iframe="../../nimib.py/hi.html" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="15" >
+      <section data-nimib-slide-number="16" >
+      <h2><a href="">The Culture</a></h2>
+      </section>
+      <section data-nimib-slide-number="17" >
+      <h3>Zen of Python</h3>
+      <pre><code class="language-md">Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!```
+</code></pre>
+      </section>
+      <section data-nimib-slide-number="18" >
+      <h3>Zen of Nim</h3>
+      <pre><code class="language-md">1. Copying bad design is not good design.
+2. If the compiler cannot reason about the code,
+   neither can the programmer.
+3. Don’t get in the programmer’s way.
+4. Move work to compile-time:
+   Programs are run more often than they are compiled.
+5. Customizable memory management.
+6. Concise code is not in conflict with readability,
+   it enables readability.
+7. (Leverage meta programming to keep the language small.)
+8. Optimization is specialization:
+   When you need more speed, write custom code.
+9. There should be one and only one programming language
+   for everything.
+   That language is Nim.
+</code></pre>
+      </section>
+      <section data-nimib-slide-number="19" >
+      <p><a href="">Same for a Mainstream tech?</a></p>
+      </section>
+      <section data-background-iframe="https://forum.nim-lang.org/t/8780" data-background-interactive></section>
+      </section>
+      <section data-nimib-slide-number="20" >
+      <section data-nimib-slide-number="21" >
+      <h2><a href="">The People</a></h2>
+      </section>
       </section>
       <script defer>/* Generated by the Nim Compiler v1.6.10 */
 var framePtr = null;
